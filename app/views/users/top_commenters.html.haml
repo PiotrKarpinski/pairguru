@@ -1,0 +1,18 @@
+%table.table.table-striped
+  %tbody
+    %tr
+    %td
+      %strong='#'
+    %td
+      %strong= 'Name'
+    %td
+      %strong= 'Points'
+    %td
+      %strong= 'Last commented'
+    - @top_commenters.each_with_index do |commenter, i|
+      %tr
+        %td= i + 1
+        %td= commenter.name
+        %td= commenter.user_comments.length
+        %td
+          = link_to commenter.user_comments.last.movie.title, movie_path(commenter.user_comments.last.movie)

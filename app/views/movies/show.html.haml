@@ -3,19 +3,19 @@
   = @movie.description
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
-= form_for(UserComment.new, url: add_comment_movie_path(@movie.id)) do |f|
-  - if @user_comment && @user_comment.errors.any?
-    %ul.errors
-      - @user_comment.errors.full_messages.each do |msg|
-        %li= msg
-  = f.text_area :content, class: "form-control"
-  = f.submit(class: "btn btn-primary")
-%ul.comments{ style: 'margin-top: 48px' }
-  - @movie.user_comments.each do |comment|
-    %li{ style: 'list-style-type: none' }
-      = comment.user.name
-    .jumbotron
-      = comment.content
-      .deletion{ style: 'float: right; margin: 12px' }
-        = link_to 'Delete comment', delete_comment_movie_path(comment.id), method: :delete, class: 'btn btn-sm btn-danger'
+  = form_for(UserComment.new, url: add_comment_movie_path(@movie.id)) do |f|
+    - if @user_comment && @user_comment.errors.any?
+      %ul.errors
+        - @user_comment.errors.full_messages.each do |msg|
+          %li= msg
+    = f.text_area :content, class: "form-control"
+    = f.submit(class: "btn btn-primary")
+  %ul.comments{ style: 'margin-top: 48px' }
+    - @movie.user_comments.each do |comment|
+      %li{ style: 'list-style-type: none' }
+        = comment.user.name
+      .jumbotron
+        = comment.content
+        .deletion{ style: 'float: right; margin: 12px' }
+          = link_to 'Delete comment', delete_comment_movie_path(comment.id), method: :delete, class: 'btn btn-sm btn-danger'
 
