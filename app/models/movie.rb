@@ -14,4 +14,6 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
+  has_many :user_comments
+
 end
